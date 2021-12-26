@@ -1,10 +1,12 @@
 const express = require('express');
-
+const asyncWrapper = require('../wrapper');
+const peoples =  require('../../useCase/peoples');
 const routes = express.Router();
 
-routes.get('', getPeoples);
-routes.get('/:id', getOnePeoples);
-routes.post('', createPeoples);
-routes.put('', updatePeople);
+routes.get('', asyncWrapper(peoples.getPeoples));
+routes.get('/:id', asyncWrapper(peoples.getOnePeoples));
+routes.post('', asyncWrapper(peoples.createPeoples));
+routes.put('', asyncWrapper(peoples.updatePeople));
+routes.delete('/:id', asyncWrapper(peoples.deletePeople));
 
 module.exports =  routes;

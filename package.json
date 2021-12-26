@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/BrandonKTC/kubernete_api#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "@prisma/client": "^3.7.0",
+    "express": "^4.17.2",
+    "prisma": "^3.7.0",
+    "sqlite": "^4.0.23"
   }
 }

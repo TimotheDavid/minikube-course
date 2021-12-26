@@ -5,4 +5,7 @@ const routes = express.Router();
 
 routes.use('/peoples', peoples);
 
-exports.module = routes
+
+
+
+module.exports = routes
