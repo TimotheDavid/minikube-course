@@ -22,6 +22,8 @@ services:
         - '4242:80'
       depends_on: 
         - postgres
+      env_file:
+        - .env
 volumes:
   postgres:
     name: etna-docker
