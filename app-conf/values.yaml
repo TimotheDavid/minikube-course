@@ -1,0 +1,16 @@
+
+deployement: 
+  image: my-app
+  tag: latest
+  pullPolicy: Never
+
+postgres:
+    name: postgres-3
+    deployement:
+      tag: latest
+
+name: my-app-3
+nameService: app-service-3
+
+portOutside: 30002
+replica: 3

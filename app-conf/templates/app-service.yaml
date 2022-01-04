@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata: 
-  name: app-service
+  name: "{{  .Values.nameService }}"
 spec:
   selector:
-    app: kub-etna
+    app: "{{ .Values.name }}"
   type: NodePort
   ports:
     - protocol: TCP 
       port: 4242
       targetPort: 4242
-      nodePort: 30001
+      nodePort:  {{ .Values.portOutside }}
       
