@@ -5,6 +5,7 @@ deployement:
   pullPolicy: Never
 
 postgres:
+    port: 30003
     name: postgres-3
     deployement:
       tag: latest

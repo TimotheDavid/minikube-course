@@ -1,10 +1,6 @@
 version: '3'
 
 services:
-    registery: 
-        image: registry:2
-        ports:
-         - "5000:5000"
     postgres:
       container_name: etna-database
       image: postgres:latest
@@ -15,7 +11,7 @@ services:
         - postgres:/var/lib/postgresql/etna-docker
       ports: 
         - 5432:5432
-    app:
+    my-app:
       container_name: my-app
       build: 
         context: .
