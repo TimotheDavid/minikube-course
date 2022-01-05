@@ -15,6 +15,6 @@ spec:
       containers:
         - name: "{{.Values.name }}"
           image: {{ .Values.deployement.image }}:{{ .Values.deployement.tag }}
-          imagePullPolicy: {{ .Values.deployement.pullPolicy }}
+          imagePullPolicy:  {{ .Values.deployement.pullPolicy }}
           ports:
             - containerPort: 4242

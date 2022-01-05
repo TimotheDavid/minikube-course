@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: "{{ .Values.postgres.name }}"
 spec:
+  type: NodePort
   ports:
     - protocol: TCP
       port: 5432
       targetPort: 5432
+      nodePort: {{ .Values.postgres.port }}     
   selector:
     app: "{{ .Values.postgres.name }}"
     tier: backend

@@ -11,6 +11,6 @@ COPY . .
 
 RUN npx prisma  generate 
 RUN tsc 
-EXPOSE 80
+EXPOSE 4242
 
 CMD ["npm", "run", "prod" ]

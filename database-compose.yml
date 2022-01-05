@@ -11,22 +11,7 @@ services:
         - postgres:/var/lib/postgresql/etna-docker
       ports: 
         - 5432:5432
-    my-app:
-      container_name: my-app
-      build: 
-        context: .
-        dockerfile: ./Dockerfile
-      image: my-app
-      volumes: 
-        - app:/app
-      ports:
-        - '4242:4242'
-      depends_on: 
-        - postgres
-      env_file:
-        - .env
 volumes:
   postgres:
-  app:
 
     

@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
-    "prisma": "^3.7.0"
+    "prisma": "^3.7.0",
+    "ts-node": "^10.4.0"
   }
 }
