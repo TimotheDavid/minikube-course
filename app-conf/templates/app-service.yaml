@@ -5,10 +5,9 @@ metadata:
 spec:
   selector:
     app: "{{ .Values.name }}"
-  type: NodePort
+  type: LoadBalancer
   ports:
-    - protocol: TCP 
-      port: 4242
+    - port: 4242
       targetPort: 4242
-      nodePort:  {{ .Values.portOutside }}
+      
       
