@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+    group: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+        type: db
+    spec:
+      volumes:                         
+        - name: postgres-db
+          persistentVolumeClaim:
+            claimName: postgres-brandon
+      containers:
+        - name: postgres
+          image: my-app-v2
+          ports:
+            - containerPort: 2345
