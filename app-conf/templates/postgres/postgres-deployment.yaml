@@ -17,11 +17,17 @@ spec:
         type: db
     spec:
       volumes:                         
-        - name: postgres-db
+        - name: postgres-storage
           persistentVolumeClaim:
-            claimName: postgres-brandon
+            claimName: postgres-pvc
       containers:
         - name: postgres
-          image: my-app-v2
+          image: postgres:14.1
           ports:
-            - containerPort: 2345
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data

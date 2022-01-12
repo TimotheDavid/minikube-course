@@ -18,3 +18,9 @@ spec:
           imagePullPolicy:  {{ .Values.deployement.pullPolicy }}
           ports:
             - containerPort: 4242
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          env:
+            - name: DB_SERVER
+              value: postgres

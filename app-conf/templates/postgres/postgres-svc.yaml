@@ -9,5 +9,5 @@ spec:
   selector:             
     app: postgres
   ports:
-    - port: 2345
-      targetPort: 2345
+    - port: 5432
+      targetPort: 5432
