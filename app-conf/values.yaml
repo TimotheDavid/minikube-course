@@ -1,7 +1,7 @@
 
 deployement: 
   image: timdav20/my-app
-  tag: 1
+  tag: 3
   pullPolicy: Always
 
 postgres:
