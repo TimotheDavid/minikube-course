@@ -16,10 +16,6 @@ spec:
         app: postgres
         type: db
     spec:
-      volumes:                         
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: postgres-pvc
       containers:
         - name: postgres
           image: postgres:14.1
@@ -28,6 +24,4 @@ spec:
           envFrom:
             - configMapRef:
                 name: postgres-config
-          volumeMounts:
-            - name: postgres-storage
-              mountPath: /var/lib/postgresql/data
+
