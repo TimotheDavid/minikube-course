@@ -4,9 +4,14 @@ deployement:
   tag: 3
   pullPolicy: Always
 
+
+namespaces: 
+    name: app-etna
+    
 postgres:
     port: 30003
     name: postgres-3
+    database: 
     deployement:
       tag: latest
 
