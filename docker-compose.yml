@@ -29,7 +29,6 @@ services:
       depends_on:
         - db
       environment:
-        #- DATABASE_URL=postgres://hefqxbvi:o5hme9Ksj-uO_xLGkEK6RMGTg-IcohZu@ella.db.elephantsql.com/hefqxbvi
         - DATABASE_URL=postgres://postgres:postgres@db/etna-kub
       networks:
         - app

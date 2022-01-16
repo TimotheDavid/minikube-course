@@ -5,7 +5,13 @@ metadata:
     namespace: {{ .Values.namespaces.name }}
     labels:
         group: db
-data: 
+data:
+    {{ if .Values.postgres.prod }}
+    POSTGRES_PASSWORD: {{ .Values.postgres.databaseProd.postgresPassword }}
+    POSTGRES_USER: {{ .Values.postgres.databaseProd.postgresUser }}
+    POSTGRES_DB: {{ .Values.postgres.databaseProd.postgresBb }}
+    {{ else }}
     POSTGRES_PASSWORD: {{ .Values.postgres.database.postgresPassword }}
     POSTGRES_USER: {{ .Values.postgres.database.postgresUser }}
-    POSTGRES_DB: {{ .Values.postgres.database.postgresBb }}
+    POSTGRES_DB: {{ .Values.postgres.database.postgresDb }}
+    {{ end }}

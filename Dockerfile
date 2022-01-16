@@ -13,3 +13,4 @@ RUN tsc
 EXPOSE 4242
 
 CMD ["npm", "run", "prod" ]
+
