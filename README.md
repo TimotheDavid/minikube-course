@@ -108,8 +108,14 @@ for kubernetes: make thses apply
     kubectl create namespace app-etna 
     # for app-etna you could get another one : change it in the values of helm , otherwith it will don't work 
     helm install app-etna app-conf --values=app-conf/values.yaml --namespace=app-etna  
+    minikube tunnel
+    # get the ip by
+    k get service app-service-3
+    # or other service you have give in the values 
+    # you should connect with the external ip 
+    
 ```
-
+your system is up and running: get the ip and go to **http://IP:4245/peoples**
 Your system should be up and running : congrat !
 
 
