@@ -1,0 +1,50 @@
+
+deployement: 
+  image: timdav20/my-app
+  tag: 3
+  pullPolicy: Always
+
+
+namespaces: 
+    name: app-etna
+    
+postgres:
+  prod: false 
+  port: 30003
+  name: postgres-3
+  deployement:
+      tag: 14.1
+  database: 
+    postgresPassword: postgres
+    postgresUser: postgres
+    postgresDb: etna-kub
+    postgresNetwork: postgres
+  databaseProd:
+    postgresPassword: postgresProd
+    postgresUser: postgresProd
+    postgresDb: etna-kubProd
+    postgresNetwork: postgresProd
+name: my-app-3
+nameService: app-service-3
+
+portOutside: 30002
+replica: 3
+
+app: 
+  port: 4245
+  targetPort: 4242
+
+capacity:
+  options:
+    burst: false  
+    slow: true
+    custom: false
+    customsOptions: 
+      memory: 500
+      cpu: 1 
+    burstOptions:
+      memory: 2
+      cpu: 1
+    slowOptions:
+      memory: 500
+      cpu: 1

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+    name: postgres-config
+    namespace: {{ .Values.namespaces.name }}
+    labels:
+        group: db
+data:
+    {{ if .Values.postgres.prod }}
+    POSTGRES_PASSWORD: {{ .Values.postgres.databaseProd.postgresPassword }}
+    POSTGRES_USER: {{ .Values.postgres.databaseProd.postgresUser }}
+    POSTGRES_DB: {{ .Values.postgres.databaseProd.postgresBb }}
+    {{ else }}
+    POSTGRES_PASSWORD: {{ .Values.postgres.database.postgresPassword }}
+    POSTGRES_USER: {{ .Values.postgres.database.postgresUser }}
+    POSTGRES_DB: {{ .Values.postgres.database.postgresDb }}
+    {{ end }}

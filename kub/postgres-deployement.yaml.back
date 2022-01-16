@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.postgres.name }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Values.postgres.name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Values.postgres.name }}"
+        tier: backend 
+    spec:
+      containers:
+        - name: "{{ .Values.postgres.name }}"
+          image: postgres:{{ .Values.postgres.deployement.tag }}
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_USER
+              value: postgres

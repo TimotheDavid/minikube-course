@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: "{{.Values.name }}"
+  namespace: {{ .Values.namespaces.name }}
+spec: 
+  replicas: {{ .Values.replica }}
+  selector:
+    matchLabels:
+      app: "{{.Values.name }}"
+  template: 
+    metadata: 
+      labels:
+        app: "{{.Values.name }}"
+    spec: 
+      containers:
+        - name: "{{.Values.name }}"
+          image: "{{ .Values.deployement.image  }}:{{ .Values.deployement.tag }}"
+          imagePullPolicy:  {{ .Values.deployement.pullPolicy }}
+          resources: 
+            limits:
+              cpu: "2"
+              memory: "1G"
+            requests: 
+            {{ if .Values.capacity.options.burst }}
+              cpu: "{{ .Values.capacity.options.burstOptions.cpu  }}"
+              memory: "{{ .Values.capacity.options.burstOptions.memory  }}"
+            {{ else if .Values.capacity.options.slow }}
+              cpu: "{{ .Values.capacity.options.slowOptions.cpu }}"
+              memory: "{{ .Values.capacity.options.slowOptions.memory  }}"
+            {{ else if .Values.capacity.options.custom }}
+              cpu: "{{ .Values.capacity.options.customsOptions.cpu  }}"
+              memory: "G{{ .Values.capacity.options.customsOptions.memory  }}"
+            {{ end }}
+          ports:
+            - containerPort: 4242
+          env:
+            - name: DATABASE_URL
+            {{ if .Values.postgres.prod }}
+              value: postgres://{{ .Values.postgres.databaseProd.postgresUser }}:{{ .Values.postgres.databaseProd.postgresPassword }}@{{ .Values.postgres.databaseProd.postgresNetwork }}/{{ .Values.postgres.databaseProd.postgresDb }}
+            {{ else }}
+              value: postgres://{{ .Values.postgres.database.postgresUser }}:{{ .Values.postgres.database.postgresPassword }}@{{ .Values.postgres.database.postgresNetwork }}/{{ .Values.postgres.database.postgresDb }}
+            {{ end }}
