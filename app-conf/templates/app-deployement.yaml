@@ -17,8 +17,23 @@ spec:
         - name: "{{.Values.name }}"
           image: {{ .Values.deployement.image }}:{{ .Values.deployement.tag }}
           imagePullPolicy:  {{ .Values.deployement.pullPolicy }}
+          ressources: 
+            limits:
+              cpu: "2"
+              memory: "1G"
+            requests: 
+            {{ if .Values.capacity.options.burst }}
+              cpu: "{{ .Values.capacity.options.burstOptions.cpu | quote }}G"
+              memory: "{{ .Values.capacity.options.burstOptions.memory | quote }}mi"
+            {{ else if .Values.capacity.options.slow }}
+              cpu: "{{ .Values.capacity.options.slowOptions.cpu | quote }}G"
+              memory: "{{ .Values.capacity.options.slowOptions.memory | quote }}mi"
+            {{ else if .Values.capacity.options.custom }}
+              cpu: "{{ .Values.capacity.options.customsOptions.cpu | quote }}G"
+              memory: "G{{ .Values.capacity.options.customsOptions.memory | quote }}mi"
+            {{ end }}
           ports:
             - containerPort: 4242
           env:
             - name: DATABASE_URL
-              value: postgres://postgres:postgres@postgres/etna-kub
+              value: postgres://{{ .Values.postgres.database.postgresUser }}:{{ .Values.postgres.database.postgresPassword }}@{{ .Values.postgres.database.postgresNetwork }}/{{ .Values.postgres.database.postgresDb }}

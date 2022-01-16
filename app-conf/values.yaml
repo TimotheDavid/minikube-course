@@ -9,14 +9,37 @@ namespaces:
     name: app-etna
     
 postgres:
-    port: 30003
-    name: postgres-3
-    database: 
-    deployement:
+  port: 30003
+  name: postgres-3
+  deployement:
       tag: latest
+  database: 
+    postgresPassword: postgres
+    postgresUser: postgres
+    postgresDb: etna-kub
+    postgres-network: postgres
 
 name: my-app-3
 nameService: app-service-3
 
 portOutside: 30002
 replica: 3
+
+app: 
+  port: 4245
+  targetPort: 4242
+
+capacity:
+  options:
+    burst: false
+    slow: true
+    custom: false
+    customsOptions: 
+      memory: 0.5
+      cpu: 1 
+    burstOptions:
+      memory: 2
+      cpu: 1
+    slowOptions:
+      memory: 0.5
+      cpu: 0.5 
