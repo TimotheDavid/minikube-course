@@ -1,0 +1,23 @@
+
+
+GET http://localhost:8000/add
+
+{
+  "name" : "Tim",
+  "age" : 22,
+  "student": true 
+}
+
+
+###
+PUT http://localhost:8000/update?id=0
+
+
+###
+DELETE http://localhost:8000/remove?id=0
+
+####
+GET http://localhost:8000/getAll
+
+
+
